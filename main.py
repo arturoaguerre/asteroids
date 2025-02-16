@@ -18,7 +18,7 @@ def main():
     AsteroidField.containers = (updatable,)
 
 
-    Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     AsteroidField()
 
     dt = 0
@@ -33,6 +33,11 @@ def main():
                 return
             
         updatable.update(dt)
+
+        for asteroid in asteroids:
+            if asteroid.collision(player):
+                print("Game over!")
+                return
 
         screen.fill((0, 0, 0))
 
